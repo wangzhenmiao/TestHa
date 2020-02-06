@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //使用字面量创建数组
+    var array1 = [];
+    console.log(array1);
+
+    var array2 = [];
+    array2.length = 12;
+    console.log(array2);
+
+    var array3 = ['1111','22222','333333'];
+    console.log(array3);
+    console.log(array3[array3.length-1]);
+
+    var testArr = [2,34,55,67,88,90,54];
+    for (var i=0;i<testArr.length;i++){
+        if (testArr[i] % 2 ===0){
+            console.log(testArr[i]);
+        }
+    }
+    //使用构造函数创建数据
+/*    var arr1 = new Array(); //创建一个空数据
+    console.log(arr1);
+
+    var arr2 = new Array(30);
+    console.log(arr2);
+
+    var arr3 = new Array('1111','22222','333333');
+    console.log(arr3);*/
+</script>
+</body>
+</html>

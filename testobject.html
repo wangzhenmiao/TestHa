@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * js中的对象分类：
+     *
+     */
+
+    //对象字面量
+    var x1 = {
+        name:"xx",
+        age:12,
+        sex:'女',
+        doSay:function () {
+            console.log("我的名字：" + this.name);
+        }
+    };
+    console.log(x1);
+    x1.doSay();
+    console.log(typeof x1);
+
+    //常见对象的创建方式
+    /**
+     * 1、对象字面量
+     * 2、new Object()创建对象
+     * 3、工厂函数创建对象
+     * 4、自定义构造函数
+     */
+
+    //new Object()创建对象
+    var x2 = new Object();
+    console.log(x2);
+    console.log(typeof x2);
+    x2.name = 'haha';
+    x2.age = 12;
+    console.log(x2);
+
+    //工厂函数创建对象
+    var createPerson = function (name,age,sex) {
+        var p = new Object();
+        p.name = name;
+        p.age = age;
+        p.sex = sex;
+        p.doIt = function () {
+            console.log("大家好，我是构造函数创建的!");
+        };
+        return p;
+    }
+
+    var x3 = createPerson('h1',34,'男');
+    var x4 = createPerson('h4',22,'女');
+    console.log(x3);
+    console.log(x4);
+    console.log(x3 === x4);
+
+    //自定义构造函数
+    function Person(name,age,sex){
+        this.age = age;
+        this.name = name ;
+        this.sex = sex;
+        this.doIt = function () {
+            console.log("女程序员");
+        }
+        //return this;写不写其实都会执行这一句！！！
+    };
+
+    var x5 = new Person('e3',33,'未知');
+    var y2 = new Person('r4',22,'女');
+    console.log(x5);
+    console.log(y2);
+    /**
+     * 解析
+     * 1、new关键字先在内存中创建一个新的空对象
+     * 2、new会让this指针指向新的对象
+     * 3、执行构造函数，给这个新对象加属性和方法
+     * 4、返回这个新对象（默认会执行 return this;）
+     */
+
+    //遍历对象,用for...in...
+    var x6 = {
+            name:"xx",
+            age:12,
+            sex:'女',
+            doSay:function () {
+                console.log("我的名字：" + this.name);
+            }
+        };
+
+    for(var key in x6){
+        console.log(key + '的值：' + x6[key]);
+    }
+</script>
+</body>
+</html>

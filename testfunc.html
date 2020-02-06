@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/html">
+//新增type="text/html"，是为了不让他执行，去掉即可执行
+    //基本
+    var func = new Function("console.log('xxxxxxxx');");
+    func();
+
+    //函数声明方式
+    function getAdd(a,b){
+        console.log((a + b));
+    }
+
+    getAdd(4,6);
+
+    //函数表达式声明方式
+    var getNum = function(a,b){
+        console.log((a + b));
+    }
+    getNum(3,5);
+
+    //arguments输出实参
+    var getDel = function (a,b,c) {
+        console.log(arguments);
+    }
+    getDel(1,2,3);
+
+    //比较实参和形参
+    var getDiv = function (a,b) {
+        //输出实参个数
+        console.log(arguments.length);
+        //输出实参个数
+        console.log(getDiv.length);
+    }
+
+    getDiv(11,22,33);
+
+    //数组参数
+    var getArr = function (arr) {
+        var sum = 0;
+        for (var i=0;i<arr.length;i++){
+            sum += arr[i];
+        }
+        console.log(sum);
+    }
+
+    getArr([1,2,3,4])
+
+    // arguments传递数组
+    var getArg = function () {
+        var sum = 0
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i]
+        }
+        console.log(sum);
+    }
+
+    getArg(1,2,3,4,5)
+
+    //return关键字
+    var testReturn = function (num) {
+        if(typeof num !== 'number'){ //判断数据类型
+            return;
+            console.log('after return');
+        }
+        if(num % 2 === 0){
+            return '偶数';
+        }else {
+            return '奇数'
+        }
+    }
+
+    var f1 = testReturn('3')
+    console.log(f1);//会输出undefined
+
+    var f2 = testReturn(9)
+    console.log(f2);
+
+    //函数直接声明和表达式声明的区别
+    //直接声明可以先使用，后定义，因为解析器会把函数声明提前执行
+    //表达式声明的函数，必须先声明，再使用
+
+    //匿名函数：没有命名的函数
+    //1、用在绑定事件的时候
+    document.onclick = function(){
+        console.log("绑定到事件");
+    }
+    //2、定时器
+    setInterval(function(){
+        console.log("每秒输出1次");
+    },1000);
+    //3、闭包既立即执行函数
+    (function (num1,num2) {
+        console.log("我是闭包的输出");
+        console.log(num1 + num2);
+    })(3,5);
+
+    //函数是一种类型
+    function  f() {
+
+    };
+    console.log(typeof f); //输出function
+    console.log(typeof f());//输出undefined
+
+    //回调函数
+    function add(a,b) {return a+b;};
+    function del(a,b) {return a-b;};
+    function mul(a,b) {return a*b;};
+    function div(a,b) {return a/b;};
+
+    /**
+     * 第三个是函数名：func
+     * @param a
+     * @param b
+     * @param func
+     * @returns {*}
+     */
+    function cal(a,b,func) {
+        return func(a,b);
+    };
+
+    var r1 = cal(3,5,add);
+    console.log("add:" + r1);
+
+    var r2 = cal(4,1,mul);
+    console.log("mul:" + r2);
+
+    //js解析器执行代码的时候，会分为两个过程：预解析+代码执行
+
+    //预解析过程
+    //把变量的声明提升到当前作用域的最前面，只会提升声明，不会提升赋值
+    //把函数的声明提升到当前作用域的最前面，只会提升声明，不会提升调用
+    //先提升var,再提升function
+    //变量作用域和预解析
+    var a1 = 10;
+    function f3() {
+        console.log(a1);//输出undefined，调用的是作用域内的变量
+        var a1 = 9; //此处的a1会提升到函数定义的第一行
+        console.log(a1);//输出9
+    };
+    f3();
+
+    /**
+     * 输出：
+     *line1: ƒ fn2() {
+        console.log("我是函数fn2");
+     * }
+     * line2:我是fn2函数
+     * line3:testfunc.html:163 Uncaught TypeError: fn2 is not a function
+     *  at testfunc.html:163
+     */
+
+    console.log(fn2);
+    function fn2() {
+        console.log("我是函数fn2");
+    };
+    var fn2 = '我是fn2函数';
+    console.log(fn2);
+    fn2();
+
+    /**
+     * 解析：
+     * 1、把变量fn2声明，提前
+     * 2、把函数fn2声明，提前
+     * 3、执行console.log(fn2)，因为fn2是个函数，所以输出：
+     *ƒ fn2() {
+        console.log("我是函数fn2");
+    }
+     * 4、fn2函数被定义，fn2变量被定义,console.log(fn2);输出变量fn2,具体如下：
+     * 我是fn2函数
+     * 5、fn2();语句，是要调用函数fn2,因为此时fn2是变量，所以会报错，fn2不是函数，具体如下：
+     * Uncaught TypeError: fn2 is not a function
+     at testfunc.html:163
+     */
+
+</script>
+<script>
+    var str = "str";
+    f();
+    function f() {
+        console.log("我是f函数内部");
+        console.log(str); //输出undefined
+        var str = "inner str";
+    }
+
+    /**
+     * 解析：
+     * f()函数的调用虽然在定义之后，但是会被调用的，因为function f() {...}
+     * 这个格式的函数定义，会被提前
+     */
+</script>
+</body>
+</html>

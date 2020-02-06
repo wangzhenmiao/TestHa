@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/html">
+    //用text/html注释掉js代码
+    //检查一个对象是否是数组
+    //1、instanceof
+    var arr = ['苹果','鸭梨','橙子'];
+    console.log(arr instanceof Array); //true
+    console.log(arr instanceof Object);//true
+    console.log(arr instanceof String);//false
+    console.log(arr instanceof Function);//false
+
+    //2、isArray()
+    console.log(Array.isArray(arr));//true
+
+    //toString(),valueOf()
+    console.log(arr.toString());
+    console.log(arr);
+    console.log(arr.valueOf());
+    console.log(arr.valueOf() === arr);//ture
+
+    //join()
+    console.log(arr.join('-')); //输出：苹果-鸭梨-橙子
+
+    //push()尾部增加
+    // pop()尾部弹出
+    console.log(arr.push('香蕉'));
+    console.log(arr);
+    console.log(arr.pop());
+    console.log(arr);
+
+    //unshift()头部增加
+    console.log(arr.unshift('菠萝'));
+    console.log(arr);
+    console.log(arr.shift());
+    console.log(arr);
+
+    //contact()
+    var arr1 = ['榴莲','百香果'];
+    var newArr = arr.concat(arr1,'芒果');
+    console.log(newArr);
+
+    //indexOf()
+    console.log(arr.indexOf('鸭梨'));
+
+    //forEach()
+    var arr = ['苹果','鸭梨','橙子'];
+    arr.forEach(function (value,index,array) {
+        console.log(value);
+        console.log(index);
+        console.log(array);
+    })
+
+    //sort()
+    var arr = ['apple','pie','banana','orage']
+    console.log(arr);
+    console.log(arr.sort(sortNumLength));
+    //自定义一个排序函数
+    function sortNumLength(a,b){
+        return a.length - b.length;
+    }
+    console.log(arr.sort(sortNum));
+
+    var arr = [700,9,12,67,123,34,78,56];
+    console.log(arr);
+    console.log(arr.sort());
+
+    //自定义一个排序函数
+    function sortNum(a,b){
+        return a-b;
+    }
+    console.log(arr.sort(sortNum));
+
+    //用匿名函数排序
+    var arr = [700,9,12,67,123,34,78,56];
+    console.log(arr);
+    console.log(arr.sort(function (a, b) {
+        return a - b;
+    }));
+
+    //map()，回调函数，遍历，返回值是一个新的数组
+    var newArr = arr.map(function (value, index, array) {
+        return value*2;
+    })
+    console.log(newArr);
+
+    //filter(),过滤
+    var arr = [700,9,12,67,123,34,78,56];
+    var newArr = arr.filter(function(value, index, array){
+        return value %2 == 0;
+    })
+    console.log(arr);
+    console.log(newArr);
+
+    //every(数组里的每个元素都满足条件，则返回true)
+    var flag = arr.every(function (value, index, array) {
+        return value >8;
+    })
+    console.log(flag);
+
+    //some(或，数组中只要有一个符合条件，即可返回true)
+
+
+</script>
+<script>
+    var str = 'itlike.com'
+
+    //charAt()
+    console.log(str.charAt(2));
+
+    //遍历
+    for(var i=0;i<str.length;i++){
+        console.log(str.charAt(i));
+        //console.log(str.charCodeAt(i));
+        //用下标
+        //console.log(str[i]);
+    }
+
+    //subStr()子字符串
+    var newStr = str.substr(2,4);
+    console.log(newStr);
+
+    //trim()去除空格
+    var str = '   ihavespace   '
+    console.log(str);
+    console.log(str.trim());
+
+    //大小写
+    var str = 'NIKE'
+    console.log(str);
+    console.log(str.toLowerCase());
+</script>
+</body>
+</html>
