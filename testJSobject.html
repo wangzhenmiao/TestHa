@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function Piedetail(value,name) {
+        this.value = value
+        this.name = name
+    }
+
+    var datatmp = [{"于彭通":16},{"刘浩天":15},{"卫鑫":14},{"鲍立新":12},{"林倩":11},{"刘旭(视频部)":10},{"王亚龙":9},{"林志武":8},{"田益华":8},{"王嘉铭":8},{"史正谦":6},{"郑宪春":6},{"霍晨晨":5},{"魏崴":5},{"胡琰士":5},{"刘伯羽":5},{"郑珊珊":5},{"张赫":4},{"张佳亮":4},{"程王勇":4},{"孙震":3},{"韩立军":3},{"肖杰":3},{"王梓航":3},{"寇洋洋":2},{"宦如松":2},{"杨召成":2},{"赫宝匣":1},{"刘经纬":1},{"彭程(视频部)":1},{"由文博":1},{"张磊":1},{"高斌":1},{"陈先庆":1}]
+    var datapie = new Array()
+    var datapietitle = new Array()
+    for(var i=0;i<datatmp.length;i++){
+        for (var key in datatmp[i]) {
+            console.log(key)
+            console.log(datatmp[i][key])
+            //饼图标题
+            datapietitle[i] = key
+            //饼图数据
+            var detail = new Piedetail(datatmp[i][key],key)
+            datapie[i] = detail
+        }
+    }
+    console.log(datapietitle);
+    console.log(datapie);
+</script>
+</body>
+</html>

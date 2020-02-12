@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试json</title>
+</head>
+<body>
+<script>
+    var datas=[];
+    var data = {};
+    data['name'] = 'ssss';
+    data['value'] = 1;
+    datas.push(data);
+    var data = {};
+    data["name"] = 'xxxx';
+    data["value"] = 133;
+    datas.push(data);
+    var jsonString = JSON.stringify(datas);  //[{"id":1,"name":"test1","age":2}]
+    console.log(jsonString);
+</script>
+</body>
+</html>
